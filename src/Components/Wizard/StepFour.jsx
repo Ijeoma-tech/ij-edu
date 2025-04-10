@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const StepFour = ({ nextStep, prevStep, formData }) => {
+const StepFour = ({ nextStep, prevStep, formData, handleChange  }) => {
   const handleSubmit = () => {
     nextStep();
   };

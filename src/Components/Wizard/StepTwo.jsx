@@ -1,19 +1,24 @@
-
+// StepTwo.js
 import React from 'react';
 
-const StepOne = ({ nextStep, formData, handleChange }) => {
-  const { firstName, lastName, email } = formData;
-  const isValid = firstName && lastName && email;
+const StepTwo = ({ nextStep, prevStep, formData, handleChange }) => {
+  const { age, dob, gender } = formData;
+  const isValid = age && dob && gender;
 
   return (
-    <div className='wizard-container'>
-      <h2>Step One: Basic Info</h2>
-      <input type="text" placeholder="First Name" value={firstName} onChange={handleChange('firstName')} />
-      <input type="text" placeholder="Last Name" value={lastName} onChange={handleChange('lastName')} />
-      <input type="email" placeholder="Email" value={email} onChange={handleChange('email')} />
+    <div className="wizard-container">
+      <h2>Step Two: Personal Info</h2>
+      <input type="number" placeholder="Age" value={age} onChange={handleChange('age')} />
+      <input type="text" placeholder="Date of Birth (DD/MM/YYYY)" value={dob} onChange={handleChange('dob')} />
+      <select value={gender} onChange={handleChange('gender')}>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <button onClick={prevStep}>Back</button>
       <button onClick={nextStep} disabled={!isValid}>Continue</button>
     </div>
   );
 };
 
-export default StepOne;
+export default StepTwo;
