@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/hero/hero';
 import './App.css';
+import Wizard from './Components/Wizard/wizard';
+import './Components/Wizard/Wizard.css'
 
 
 const App =() => {
@@ -27,7 +29,13 @@ setCounter((val) => val - 1 );
         <button onClick={incrementHandler}>increment</button>
       </div>
       </div>
+      
+      <div>
+        <Wizard />
+      </div>
     </div>
+
+    
   )
 }
 
