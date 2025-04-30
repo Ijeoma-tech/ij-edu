@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/hero/hero';
 import './App.css';
 import Wizard from './Components/Wizard/wizard';
 import './Components/Wizard/Wizard.css'
+import StudentForm from './Components/StudentForm/StudentForm';
+import StudentList from './Components/StudentList/StudentList';
+import './Components/StudentForm//StudentForm.css'
 
 
 const App =() => {
@@ -16,6 +19,30 @@ setCounter ((val) => val + 1);
   const decrementHandler=()=>{
 setCounter((val) => val - 1 );
   }
+const [students, setStudents] = useState([]);
+
+useEffect(() => {
+  const savedStudents = JSON.parse(localStorage.getItem("students")) || [];
+  setStudents(savedStudents);
+}, []);
+
+const addStudent = (newStudent) => {
+  const updatedStudents = [...students, newStudent];
+  setStudents(updatedStudents);
+};
+
+const editStudent = (index) => {
+  const student = students[index];
+  const updatedStudents = [...students];
+  updatedStudents[index] = { ...student, firstName: "Edited" }; 
+  setStudents(updatedStudents);
+};
+
+const deleteStudent = (index) => {
+  const updatedStudents = students.filter((_, i) => i !== index);
+  setStudents(updatedStudents);
+};
+
   return (
     <div>
       <Navbar />
@@ -28,10 +55,18 @@ setCounter((val) => val - 1 );
         <h1>{counter}</h1>
         <button onClick={incrementHandler}>increment</button>
       </div>
+     </div>
+<div>    
+         <Wizard />
       </div>
-      
       <div>
-        <Wizard />
+ <h1 className='student-form'>Student Record Management</h1>
+      <StudentForm addStudent={addStudent} />
+      <StudentList
+        students={students}
+        editStudent={editStudent}
+        deleteStudent={deleteStudent}
+      />
       </div>
     </div>
 

@@ -1,4 +1,4 @@
-// StepTwo.js
+
 import React from 'react';
 
 const StepTwo = ({ nextStep, prevStep, formData, handleChange }) => {

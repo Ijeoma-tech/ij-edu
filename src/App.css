@@ -28,3 +28,8 @@
     border-radius: 5px;
 
 }
+.student-form {
+    display: flex;
+    align-items: center;
+    padding-left: 34%;
+}
